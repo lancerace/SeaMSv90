@@ -1,0 +1,15 @@
+server:
+    USE_DEBUG: false
+    
+    
+    #Database Configuration
+    DB_URL: "jdbc:mysql://localhost/mslancer?useSSL=false"
+    DB_USER: root
+    DB_PASS: Qwerty00@@
+    
+    AUTOMATIC_REGISTER: true        #Automatically register players when they login with a nonexistent username.
+
+    #Ip Configuration
+    #HOST: 51.79.165.78
+    HOST: 127.0.0.1
+
