@@ -10,7 +10,7 @@ import client.inventory.*;
 import client.messages.CommandProcessorUtil;
 import constants.GameConstants;
 import constants.MapConstants;
-import constants.ServerConstants.PlayerGMRank;
+import constants.ServerConstants.PlayerRank;
 import database.DatabaseConnection;
 import handling.RecvPacketOpcode;
 import handling.channel.ChannelServer;
@@ -55,8 +55,8 @@ import java.util.concurrent.ScheduledFuture;
 
 public class AdminCommand {
 
-  public static PlayerGMRank getPlayerLevelRequired() {
-    return PlayerGMRank.ADMIN;
+  public static PlayerRank getPlayerLevelRequired() {
+    return PlayerRank.IS_ADMIN;
   }
 
   public static class LowHP extends CommandExecute {

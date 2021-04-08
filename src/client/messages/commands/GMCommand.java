@@ -7,15 +7,15 @@ package client.messages.commands;
 
 import client.MapleClient;
 import client.SkillFactory;
-import constants.ServerConstants.PlayerGMRank;
+import constants.ServerConstants.PlayerRank;
 
 /**
  * @author Emilyx3
  */
 public class GMCommand {
 
-  public static PlayerGMRank getPlayerLevelRequired() {
-    return PlayerGMRank.GM;
+  public static PlayerRank getPlayerLevelRequired() {
+    return PlayerRank.IS_GM;
   }
 
   public static class Hide extends CommandExecute {

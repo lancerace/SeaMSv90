@@ -139,7 +139,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
   private int watk;
   private EvanSkillPoints evanSP;
   private static boolean autoSkill = false;
-
+  private String commandtext;
   private HashMap<String, Object> temporaryData = new HashMap<>();
 
   private long travelTime;
@@ -206,6 +206,15 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
       pets = new ArrayList<>();
     }
   }
+
+  public String getLastCommandMessage() {
+    return this.commandtext;
+  }
+
+  public void setLastCommandMessage(String text) {
+    this.commandtext = text;
+  }
+
 
   public static MapleCharacter getDefault(final MapleClient client, final int type) {
     MapleCharacter ret = new MapleCharacter(false);
@@ -3235,7 +3244,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     return ret.masterlevel;
   }
 
-  public void levelUp(boolean show) {
+  public void levelUp(boolean show) {//show = show level effect and achievement
     if (isCygnus() && getLevel() >= 120) {
       return;
     }
@@ -3251,7 +3260,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     int maxhp = stats.getMaxHp();
     int maxmp = stats.getMaxMp();
 
-    if (isBeginner()) {
+    if (isBeginner()) { //auto assign
       maxhp += Randomizer.rand(12, 16);
       maxmp += Randomizer.rand(10, 12);
     } else if (isWarrior()) {
@@ -3347,6 +3356,8 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     if ((isEvan()) && (this.getJobValue() != MapleJob.EVAN1)) {
       addEvanSP(3);
     }
+
+  if(show)
     map.broadcastMessage(this, MaplePacketCreator.showForeignEffect(getId(), 0), false);
     stats.recalcLocalStats();
 
@@ -5161,7 +5172,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
   }
 
   public boolean isStaff() {
-    return this.gmLevel > ServerConstants.PlayerGMRank.NORMAL.getLevel();
+    return this.gmLevel > ServerConstants.PlayerRank.IS_NORMAL.getLevel();
   }
 
   // TODO: gvup, vic, lose, draw, VR
@@ -5805,6 +5816,18 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
         break;
       case 4:
         stats.setLuk(newval);
+        break;
+      case 5:
+        stats.setHp(newval);
+        break;
+      case 6:
+        stats.setMp(newval);
+        break;
+      case 7:
+        stats.setMaxHp(newval);
+        break;
+      case 8:
+        stats.setMaxMp(newval);
         break;
     }
   }

@@ -6,7 +6,7 @@ import client.MapleStat;
 import client.anticheat.ReportType;
 import constants.GameConstants;
 import constants.MapConstants;
-import constants.ServerConstants.PlayerGMRank;
+import constants.ServerConstants.PlayerRank;
 import handling.world.World;
 import scripting.NPCScriptManager;
 import scripting.v1.NewNpcTalkHandler;
@@ -17,8 +17,8 @@ import tools.MaplePacketCreator;
  */
 public class PlayerCommand {
 
-  public static PlayerGMRank getPlayerLevelRequired() {
-    return PlayerGMRank.NORMAL;
+  public static PlayerRank getPlayerLevelRequired() {
+    return PlayerRank.IS_NORMAL;
   }
 
   public static class STR extends DistributeStatCommands {

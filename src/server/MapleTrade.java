@@ -2,10 +2,10 @@ package server;
 
 import client.MapleCharacter;
 import client.MapleClient;
+import client.commands.CommandsExecutor;
 import client.inventory.IItem;
 import client.inventory.ItemFlag;
 import client.inventory.MapleInventoryType;
-import client.messages.CommandProcessor;
 import constants.GameConstants;
 import constants.MapConstants;
 import constants.ServerConstants.CommandType;
@@ -104,10 +104,11 @@ public class MapleTrade {
   }
 
   public final void chat(final String message) {
-    if (!CommandProcessor.processCommand(chr.get().getClient(), message, CommandType.TRADE)) {
+    if (!CommandsExecutor.isCommand(chr.get().getClient(), message)) {
       chr.get().dropMessage(-2, chr.get().getName() + " : " + message);
       if (partner != null) {
-        partner.getChr().getClient().getSession().write(PlayerShopPacket.shopChat(chr.get().getName() + " : " + message, 1));
+        partner.getChr().getClient().getSession()
+            .write(PlayerShopPacket.shopChat(chr.get().getName() + " : " + message, 1));
       }
     }
   }

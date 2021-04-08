@@ -65,8 +65,8 @@ public class ServerConstants {
   public static final short MAPLE_VERSION = 90;
   public static final String MAPLE_PATCH = "3";
   public static final boolean Use_Fixed_IV = false;
-  public static final String WORLD_MESSAGE = "Welcome to Maple Story Global ";
-  public static final String RECOMMENDED_MESSAGE = "We are still in Tespia testing! Report bugs on our forums.";
+  public static final String WORLD_MESSAGE = "Welcome to SeaMS ";
+  public static final String RECOMMENDED_MESSAGE = "We are still in Betatesting! Report bugs on our discord.";
   //Faction Stuff
   public static final float FP_MULTIPLIER = 1.3f; // float = rounding the int
 
@@ -75,16 +75,16 @@ public class ServerConstants {
     return 1;
   }
 
-  public static enum PlayerGMRank {
+  public static enum PlayerRank {
 
-    NORMAL('@', 0),
-    DONOR('!', 1),
-    GM('!', 2),
-    ADMIN('!', 3);
+    IS_NORMAL('@',0),
+    IS_DONOR('!', 1),
+    IS_GM('!', 2),
+    IS_ADMIN('!', 3);
     private char commandPrefix;
     private int level;
 
-    PlayerGMRank(char ch, int level) {
+    PlayerRank(char ch, int level) {
       commandPrefix = ch;
       this.level = level;
     }

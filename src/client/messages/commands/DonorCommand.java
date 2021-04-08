@@ -8,7 +8,7 @@ package client.messages.commands;
 import client.MapleCharacter;
 import client.MapleClient;
 import client.inventory.MapleInventoryType;
-import constants.ServerConstants.PlayerGMRank;
+import constants.ServerConstants.PlayerRank;
 import server.MapleInventoryManipulator;
 
 /**
@@ -16,8 +16,8 @@ import server.MapleInventoryManipulator;
  */
 public class DonorCommand {
 
-  public static PlayerGMRank getPlayerLevelRequired() {
-    return PlayerGMRank.DONOR;
+  public static PlayerRank getPlayerLevelRequired() {
+    return PlayerRank.IS_DONOR;
   }
 
   public static class buycoco extends CommandExecute {

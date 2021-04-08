@@ -2,7 +2,8 @@ package handling.channel.handler;
 
 import client.MapleCharacter;
 import client.MapleClient;
-import client.messages.CommandProcessor;
+import client.commands.CommandsExecutor;
+//import client.messages.CommandProcessor;
 import constants.ServerConstants.CommandType;
 import handling.AbstractMaplePacketHandler;
 import handling.world.World;
@@ -28,9 +29,12 @@ public class PartyChatHandler extends AbstractMaplePacketHandler {
           .write(MaplePacketCreator.serverNotice(6, "You have been muted and are therefore unable to talk."));
       return;
     }
-    if (CommandProcessor.processCommand(c, chattext, CommandType.NORMAL)) {
-      return;
+    
+    //if it is a command, do not process
+    if(CommandsExecutor.isCommand(c,chattext)){
+        return;
     }
+
     chr.getCheatTracker().checkMsg();
     switch (type) {
       case 0:
