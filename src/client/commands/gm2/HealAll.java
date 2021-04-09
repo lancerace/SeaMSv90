@@ -4,14 +4,19 @@ import client.MapleCharacter;
 import client.MapleClient;
 import client.MapleStat;
 import client.commands.ICommand;
-
+/**
+ *
+ * @author Magikarp 
+ * @date 8/4/2021
+ */
 public class HealAll extends ICommand{
 
     @Override
     public void execute(MapleClient c, String[] params) {
      
-        if(params.length < 0){
+        if(params.length > 1){
             c.getPlayer().dropMessage(6, "Syntax: !healall");
+            return;
         }
 
         MapleCharacter player = c.getPlayer();

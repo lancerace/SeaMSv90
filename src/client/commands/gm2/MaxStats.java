@@ -6,11 +6,19 @@ import client.MapleStat;
 import client.PlayerStats;
 import client.commands.ICommand;
 
-public class MaxStats extends ICommand{
- 
+/**
+ *
+ * @author Magikarp
+ * @date 8/4/2021
+ */
+public class MaxStats extends ICommand {
 
     @Override
     public void execute(MapleClient c, String[] params) {
+        if (params.length > 1) {
+            c.getPlayer().dropMessage(6, "Syntax: !maxstats");
+            return;
+        }
 
         MapleCharacter player = c.getPlayer();
         PlayerStats stats = player.getStats();
@@ -32,6 +40,6 @@ public class MaxStats extends ICommand{
         player.updateSingleStat(MapleStat.HP, c.getPlayer().getStats().getCurrentMaxHp());
         player.updateSingleStat(MapleStat.MP, c.getPlayer().getStats().getCurrentMaxMp());
         player.setStats(stats);
-        player.dropMessage(6, "Stats maxed out");        
+        player.dropMessage(6, "Stats maxed out");
     }
 }

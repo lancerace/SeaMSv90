@@ -4,7 +4,11 @@ import client.MapleCharacter;
 import client.MapleClient;
 import client.PlayerStats;
 import client.commands.ICommand;
-
+/**
+ *
+ * @author Magikarp 
+ * @date 8/4/2021
+ */
 public class Level extends ICommand {
 
     @Override

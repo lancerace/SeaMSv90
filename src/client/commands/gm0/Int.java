@@ -7,10 +7,10 @@ package client.commands.gm0;
 
 import client.MapleStat;
 import client.commands.gm0.DistributeStats;
-
 /**
  *
- * @author Magikarp
+ * @author Magikarp 
+ * @date 8/4/2021
  */
 public class Int extends DistributeStats {
 

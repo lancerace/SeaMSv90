@@ -10,7 +10,8 @@ import client.commands.gm0.DistributeStats;
 
 /**
  *
- * @author Magikarp
+ * @author Magikarp 
+ * @date 8/4/2021
  */
 public class Luk extends DistributeStats {
 

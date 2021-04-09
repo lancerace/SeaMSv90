@@ -5,6 +5,12 @@ import client.MapleClient;
 import client.MapleStat;
 import client.commands.ICommand;
 
+/**
+ *
+ * @author Magikarp 
+ * @date 9/4/2021
+ */
+
 public abstract class DistributeStats extends ICommand {
 
     protected MapleStat stats = null;
