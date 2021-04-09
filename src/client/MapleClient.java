@@ -37,6 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import config.YamlConfig;
+import scripting.AbstractPlayerInteraction;
 import scripting.v1.binding.NpcScript;
 import server.ClientStorage;
 import server.Timer.PingTimer;
@@ -139,6 +140,11 @@ public class MapleClient implements Serializable {
   public final boolean login_Auth(final int id) {
     return allowedChar.contains(id);
   }
+
+          
+  public AbstractPlayerInteraction getAbstractPlayerInteraction() {
+    return new AbstractPlayerInteraction(this);
+}
 
   public final List<MapleCharacter> loadCharacters(final int serverId) { // TODO make this less costly zZz
     final List<MapleCharacter> chars = new LinkedList<MapleCharacter>();

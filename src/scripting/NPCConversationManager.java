@@ -1438,7 +1438,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         } else {
           setQuestRecord(getPlayer(), 160001, "2");
           setQuestRecord(chr, 160001, "2");
-          sendNPCText(getPlayer().getName() + " and " + chr.getName()
+          sendNPCTalk(getPlayer().getName() + " and " + chr.getName()
               + ", I wish you two all the best on your journey together!", 9201002);
           getMap().startExtendedMapEffect("You may now kiss the bride, " + getPlayer().getName() + "!",
               5120006);
