@@ -2282,6 +2282,13 @@ public class MaplePacketCreator {
     return getNPCTalk(npc, msgType, talk, endBytes, type, 0);
   }
 
+  /**
+   * Possible values for @param type
+   * 0: Npc talking (left)
+   * 1: Npc talking (right), No end chat button
+   * 2: Player talking (right)
+   * 3: Player talking (right), No end chat button
+   */
   public static byte[] getNPCTalk(int npc, byte msgType, String talk, String endBytes, byte type, int OtherNPC) {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
 
@@ -2289,7 +2296,7 @@ public class MaplePacketCreator {
     mplew.write(4);
     mplew.writeInt(npc);
     mplew.write(msgType);
-    mplew.write(type); // 1 = No ESC, 3 = show character + no sec
+    mplew.write(type);
     if (type >= 4 && type <= 5) {
       mplew.writeInt(OtherNPC);
     }

@@ -15,9 +15,11 @@ import client.commands.gm0.Dex;
 import client.commands.gm0.Int;
 import client.commands.gm0.Luk;
 import client.commands.gm0.Str;
+import client.commands.gm2.Goto;
 import client.commands.gm2.Heal;
 import client.commands.gm2.HealAll;
 import client.commands.gm2.Invincible;
+import client.commands.gm2.Kill;
 import client.commands.gm2.Level;
 import client.commands.gm2.MaxStats;
 import constants.ServerConstants.PlayerRank;
@@ -76,14 +78,14 @@ public class CommandsExecutor {
             return;
         }
 
-        String[] params;
+        String[] commandValueClone; //e.g @level 12. commandValueClone only store 12 onward
         if (commandValue.length > 0 && !commandValue[0].isEmpty()) {
-            params = Arrays.copyOfRange(commandValue, 0, commandValue.length);
+            commandValueClone = Arrays.copyOfRange(commandValue, 0, commandValue.length);
         } else {
-            params = new String[]{};
+            commandValueClone = new String[]{};
         }
         
-        command.execute(c, params);
+        command.execute(c, commandValueClone);
         writeLog(c, message);
 
     }
@@ -130,6 +132,8 @@ public class CommandsExecutor {
         addCommand("maxstats", PlayerRank.IS_GM.getLevel(),MaxStats.class);
         addCommand("heal", PlayerRank.IS_GM.getLevel(),Heal.class);
         addCommand("healall", PlayerRank.IS_GM.getLevel(),HealAll.class);
+        addCommand("kill",PlayerRank.IS_GM.getLevel(),Kill.class);
+        addCommand("goto",PlayerRank.IS_GM.getLevel(),Goto.class);
     }
 
     private void registerLv3Commands(){

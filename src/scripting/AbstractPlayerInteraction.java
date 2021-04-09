@@ -50,10 +50,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class AbstractPlayerInteraction {
+public class AbstractPlayerInteraction {
 
   private MapleClient c;
-  private final int oid, questid;
+  private int oid=0, questid=0;
+
+  public AbstractPlayerInteraction(final MapleClient c){
+    this.c = c;
+  }
 
   public AbstractPlayerInteraction(final MapleClient c, final int oid, final int questid) {
     this.c = c;
@@ -1052,7 +1056,7 @@ public abstract class AbstractPlayerInteraction {
   }
 
 
-  public void sendNPCText(final String text, final int npc) {
+  public void sendNPCTalk(final String text, final int npc) {
     getMap().broadcastMessage(MaplePacketCreator.getNPCTalk(npc, (byte) 0, text, "00 00", (byte) 0));
   }
 
