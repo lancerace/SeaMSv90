@@ -44,10 +44,10 @@ public class Level extends ICommand {
         c.setRemainingAp(0);
         c.setRemainingSp(0);
         c.changeJob(c.getJob()); // add back job advance extra hp mp stats
-        c.setstat((byte) 5, (short) temp.getStat().hp); // set hp
-        c.setstat((byte) 6, (short) temp.getStat().mp); // set mp
-        c.setstat((byte) 7, (short) temp.getStat().maxhp); // set mp
-        c.setstat((byte) 8, (short) temp.getStat().maxmp); // set mp
+        c.setStats((byte) 5, (short) temp.getStats().hp); // set hp
+        c.setStats((byte) 6, (short) temp.getStats().mp); // set mp
+        c.setStats((byte) 7, (short) temp.getStats().maxhp); // set mp
+        c.setStats((byte) 8, (short) temp.getStats().maxmp); // set mp
     }
 }
 

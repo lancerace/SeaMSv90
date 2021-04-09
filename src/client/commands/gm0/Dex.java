@@ -15,6 +15,6 @@ import client.commands.gm0.DistributeStats;
 public class Dex extends DistributeStats {
 
     public Dex() {
-      stat = MapleStat.DEX;
+      stats = MapleStat.DEX;
     }
   }

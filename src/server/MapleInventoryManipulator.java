@@ -538,7 +538,7 @@ public class MapleInventoryManipulator {
     if (chr == null) {
       return;
     }
-    final PlayerStats statst = c.getPlayer().getStat();
+    final PlayerStats statst = c.getPlayer().getStats();
     Equip source = (Equip) chr.getInventory(MapleInventoryType.EQUIP).getItem(src);
     Equip target = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem(dst);
 
@@ -555,7 +555,7 @@ public class MapleInventoryManipulator {
       c.getSession().write(MaplePacketCreator.enableActions());
       return;
     }
-    if (!ii.canEquip(stats, source.getItemId(), chr.getLevel(), chr.getJob(), chr.getFame(), statst.getTotalStr(), statst.getTotalDex(), statst.getTotalLuk(), statst.getTotalInt(), c.getPlayer().getStat().levelBonus)) {
+    if (!ii.canEquip(stats, source.getItemId(), chr.getLevel(), chr.getJob(), chr.getFame(), statst.getTotalStr(), statst.getTotalDex(), statst.getTotalLuk(), statst.getTotalInt(), c.getPlayer().getStats().levelBonus)) {
       c.getSession().write(MaplePacketCreator.enableActions());
       return;
     }

@@ -54,37 +54,37 @@ public class PlayerCommand {
     protected MapleStat stat = null;
     private static int statLim = 30000;
 
-    private void setStat(MapleCharacter player, int amount) {
+    private void setStats(MapleCharacter player, int amount) {
       switch (stat) {
         case STR:
-          player.getStat().setStr((short) amount);
-          player.updateSingleStat(MapleStat.STR, player.getStat().getStr());
+          player.getStats().setStr((short) amount);
+          player.updateSingleStat(MapleStat.STR, player.getStats().getStr());
           break;
         case DEX:
-          player.getStat().setDex((short) amount);
-          player.updateSingleStat(MapleStat.DEX, player.getStat().getDex());
+          player.getStats().setDex((short) amount);
+          player.updateSingleStat(MapleStat.DEX, player.getStats().getDex());
           break;
         case INT:
-          player.getStat().setInt((short) amount);
-          player.updateSingleStat(MapleStat.INT, player.getStat().getInt());
+          player.getStats().setInt((short) amount);
+          player.updateSingleStat(MapleStat.INT, player.getStats().getInt());
           break;
         case LUK:
-          player.getStat().setLuk((short) amount);
-          player.updateSingleStat(MapleStat.LUK, player.getStat().getLuk());
+          player.getStats().setLuk((short) amount);
+          player.updateSingleStat(MapleStat.LUK, player.getStats().getLuk());
           break;
       }
     }
 
-    private int getStat(MapleCharacter player) {
+    private int getStats(MapleCharacter player) {
       switch (stat) {
         case STR:
-          return player.getStat().getStr();
+          return player.getStats().getStr();
         case DEX:
-          return player.getStat().getDex();
+          return player.getStats().getDex();
         case INT:
-          return player.getStat().getInt();
+          return player.getStats().getInt();
         case LUK:
-          return player.getStat().getLuk();
+          return player.getStats().getLuk();
         default:
           throw new RuntimeException(); // Will never happen.
       }
@@ -111,11 +111,11 @@ public class PlayerCommand {
         c.getPlayer().dropMessage(5, "You don't have enough AP for that.");
         return 0;
       }
-      if (getStat(c.getPlayer()) + change > statLim) {
+      if (getStats(c.getPlayer()) + change > statLim) {
         c.getPlayer().dropMessage(5, "The stat limit is " + statLim + ".");
         return 0;
       }
-      setStat(c.getPlayer(), getStat(c.getPlayer()) + change);
+      setStats(c.getPlayer(), getStats(c.getPlayer()) + change);
       c.getPlayer().setRemainingAp((c.getPlayer().getRemainingAp() - change));
       c.getPlayer().updateSingleStat(MapleStat.AVAILABLEAP, Math.min(199, c.getPlayer().getRemainingAp()));
       c.getPlayer().dropMessage(5, "You've " + c.getPlayer().getRemainingAp() + " remaining ability points.");

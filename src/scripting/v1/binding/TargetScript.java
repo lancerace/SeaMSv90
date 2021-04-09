@@ -60,62 +60,62 @@ public class TargetScript extends PlayerInteractionScript {
   }
 
   public int nSTR() {
-    return player.getStat().getStr();
+    return player.getStats().getStr();
   }
 
   public int incSTR(int value) {
-    short previousSTR = player.getStat().getStr();
-    player.setstat((byte) 1, (short) (previousSTR + value));
+    short previousSTR = player.getStats().getStr();
+    player.setStats((byte) 1, (short) (previousSTR + value));
     return nSTR();
   }
 
   public int nDEX() {
-    return player.getStat().getDex();
+    return player.getStats().getDex();
   }
 
   public int incDEX(int value) {
-    short previousDEX = player.getStat().getDex();
-    player.setstat((byte) 2, (short) (previousDEX + value));
+    short previousDEX = player.getStats().getDex();
+    player.setStats((byte) 2, (short) (previousDEX + value));
     return nDEX();
   }
 
   public int nINT() {
-    return player.getStat().getInt();
+    return player.getStats().getInt();
   }
 
   public int incINT(int value) {
-    short previousINT = player.getStat().getInt();
-    player.setstat((byte) 3, (short) (previousINT + value));
+    short previousINT = player.getStats().getInt();
+    player.setStats((byte) 3, (short) (previousINT + value));
     return nINT();
   }
 
   public int nLUK() {
-    return player.getStat().getLuk();
+    return player.getStats().getLuk();
   }
 
   public int incLUK(short value) {
-    short previousLUK = player.getStat().getLuk();
-    player.setstat((byte) 4, (short) (previousLUK + value));
+    short previousLUK = player.getStats().getLuk();
+    player.setStats((byte) 4, (short) (previousLUK + value));
     return nLUK();
   }
 
   public int nHP() {
-    return player.getStat().getHp();
+    return player.getStats().getHp();
   }
 
   public int incHP(int value) {
-    int previousHP = player.getStat().getHp();
-    player.getStat().setHp(previousHP + value);
+    int previousHP = player.getStats().getHp();
+    player.getStats().setHp(previousHP + value);
     return nHP();
   }
 
   public int nMP() {
-    return player.getStat().getMp();
+    return player.getStats().getMp();
   }
 
   public int incMP(int value) {
-    int previousMP = player.getStat().getHp();
-    player.getStat().setMp(previousMP + value);
+    int previousMP = player.getStats().getHp();
+    player.getStats().setMp(previousMP + value);
     return nMP();
   }
 

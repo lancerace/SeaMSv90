@@ -15,6 +15,6 @@ import client.commands.gm0.DistributeStats;
 public class Int extends DistributeStats {
 
     public Int() {
-      stat = MapleStat.INT;
+      stats = MapleStat.INT;
     }
 }

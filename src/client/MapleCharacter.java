@@ -1373,7 +1373,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     }
   }
 
-  public final PlayerStats getStat() {
+  public final PlayerStats getStats() {
     return stats;
   }
 
@@ -2579,7 +2579,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     final MapleStatEffect statss = getStatForBuff(MapleBuffStat.SOUL_STONE);
     if (statss != null) {
       client.getSession().write(MaplePacketCreator.showSpecialEffect(26));
-      getStat().setHp(((getStat().getMaxHp() / 100) * statss.getX()));
+      getStats().setHp(((getStats().getMaxHp() / 100) * statss.getX()));
       setStance(0);
       changeMap(getMap(), getMap().getPortal(0));
       return;
@@ -2723,7 +2723,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     }
     if (statups.size() > 0) {
       client.getSession().write(MaplePacketCreator.updatePlayerStats(statups, getJob()));
-      int hp = this.getStat().hp;
+      int hp = this.getStats().hp;
       if (hp <= 0) {// In case player die with disable actions
         getClient().enableActions();
         if (this.getNewEventInstance() != null) {
@@ -4450,7 +4450,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
 
         @Override
         public void run() {
-          int remhppercentage = (int) Math.ceil((getStat().getHp() * 100.0) / getStat().getMaxHp());
+          int remhppercentage = (int) Math.ceil((getStats().getHp() * 100.0) / getStats().getMaxHp());
           if (berserkLvl == 0 || remhppercentage >= berserkLvl + 10) {
             addHP(healEffect.getHp());
           }
@@ -5803,8 +5803,12 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     return watk;
   }
 
-  public void setstat(byte stat, short newval) {
-    switch (stat) {
+  public void setStats(PlayerStats stats){
+    this.stats = stats;
+  }
+
+  public void setStats(byte statCase, short newval) {
+    switch (statCase) {
       case 1:
         stats.setStr(newval);
         break;

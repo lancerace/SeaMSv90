@@ -234,7 +234,7 @@ public class PacketHelper {
     }
     mplew.write(chr.getLevel()); // level
     mplew.writeShort(chr.getJob()); // job
-    chr.getStat().connectData(mplew);
+    chr.getStats().connectData(mplew);
     mplew.writeShort(Math.min(199, chr.getRemainingAp())); // Avoid Popup
     if (chr.isEvan() && (chr.getLevel() >= 10) && (chr.getJob() != 2001)) {
       EvanSkillPoints esp;
@@ -274,16 +274,16 @@ public class PacketHelper {
       if (item instanceof Equip) {
         Equip currentEquip = (Equip) item;
         if (!chr.isGameMasterJob()) {
-          if (currentEquip.getRequiredStr() > chr.getStat().getTotalStr()) {
+          if (currentEquip.getRequiredStr() > chr.getStats().getTotalStr()) {
             continue;
           }
-          if (currentEquip.getRequiredDex() > chr.getStat().getTotalDex()) {
+          if (currentEquip.getRequiredDex() > chr.getStats().getTotalDex()) {
             continue;
           }
-          if (currentEquip.getRequiredInt() > chr.getStat().getTotalInt()) {
+          if (currentEquip.getRequiredInt() > chr.getStats().getTotalInt()) {
             continue;
           }
-          if (currentEquip.getRequiredLuk() > chr.getStat().getTotalLuk()) {
+          if (currentEquip.getRequiredLuk() > chr.getStats().getTotalLuk()) {
             continue;
           }
           boolean isLevel0 = currentEquip.getRequiredLevel() == 0;

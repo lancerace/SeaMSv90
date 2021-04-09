@@ -58,7 +58,7 @@ public class CloseRangeDamageHandler extends AbstractMaplePacketHandler {
       return;
     }
     final boolean mirror = chr.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) != null;
-    double maxdamage = chr.getStat().getCurrentMaxBaseDamage();
+    double maxdamage = chr.getStats().getCurrentMaxBaseDamage();
     int attackCount = (chr.getJob() >= 430 && chr.getJob() <= 434 ? 2 : 1), skillLevel = 0;
     MapleStatEffect effect = null;
     ISkill skill = null;
@@ -188,7 +188,7 @@ public class CloseRangeDamageHandler extends AbstractMaplePacketHandler {
     chr.getMap().broadcastMessage(chr,
         MaplePacketCreator.closeRangeAttack(chr.getId(), attack.tbyte, attack.skill, skillLevel, attack.display,
             attack.animation, attack.speed, attack.allDamage, energy, chr.getLevel(),
-            chr.getStat().passive_mastery(), attack.unk, attack.charge),
+            chr.getStats().passive_mastery(), attack.unk, attack.charge),
         chr.getPosition());
     DamageParse.applyAttack(attack, skill, c.getPlayer(), attackCount, maxdamage, effect,
         mirror ? AttackType.NON_RANGED_WITH_MIRROR : AttackType.NON_RANGED);

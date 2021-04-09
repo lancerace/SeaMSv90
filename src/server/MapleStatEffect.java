@@ -733,7 +733,7 @@ public class MapleStatEffect implements Serializable {
             final int absorbMp = Math.min((int) (mob.getMobMaxMp() * (getX() / 100.0)), mob.getMp());
             if (absorbMp > 0) {
               mob.setMp(mob.getMp() - absorbMp);
-              applyto.getStat().setMp((short) (applyto.getStat().getMp() + absorbMp));
+              applyto.getStats().setMp((short) (applyto.getStats().getMp() + absorbMp));
               applyto.getClient().getSession().write(MaplePacketCreator.showOwnBuffEffect(sourceid, 1));
               applyto.getMap().broadcastMessage(applyto, MaplePacketCreator.showBuffeffect(applyto.getId(), sourceid, 1), false);
             }
@@ -773,7 +773,7 @@ public class MapleStatEffect implements Serializable {
     int hpchange = calcHPChange(applyfrom, primary);
     int mpchange = calcMPChange(applyfrom, primary);
 
-    final PlayerStats stat = applyto.getStat();
+    final PlayerStats stat = applyto.getStats();
     if (primary) {
       if (itemConNo != 0) {
         MapleInventoryManipulator.removeById(applyto.getClient(), GameConstants.getInventoryType(itemCon), itemCon, itemConNo, false, true);
@@ -1383,14 +1383,14 @@ public class MapleStatEffect implements Serializable {
           hpchange /= 2;
         }
       } else { // assumption: this is heal
-        hpchange += makeHealHP(hp / 100.0, applyfrom.getStat().getTotalMagic(), 3, 5);
+        hpchange += makeHealHP(hp / 100.0, applyfrom.getStats().getTotalMagic(), 3, 5);
         if (applyfrom.hasDisease(MapleDisease.ZOMBIFY)) {
           hpchange = -hpchange;
         }
       }
     }
     if (hpR != 0) {
-      hpchange += (int) (applyfrom.getStat().getCurrentMaxHp() * hpR) / (applyfrom.hasDisease(MapleDisease.ZOMBIFY) ? 2 : 1);
+      hpchange += (int) (applyfrom.getStats().getCurrentMaxHp() * hpR) / (applyfrom.hasDisease(MapleDisease.ZOMBIFY) ? 2 : 1);
     }
     // actually receivers probably never get any hp when it's not heal but whatever
     if (primary) {
@@ -1400,11 +1400,11 @@ public class MapleStatEffect implements Serializable {
     }
     switch (this.sourceid) {
       case 4211001: // Chakra
-        final PlayerStats stat = applyfrom.getStat();
+        final PlayerStats stat = applyfrom.getStats();
         int v42 = getY() + 100;
         int v38 = Randomizer.rand(1, 100) + 100;
         hpchange = (int) ((v38 * stat.getLuk() * 0.033 + stat.getDex()) * v42 * 0.002);
-        hpchange += makeHealHP(getY() / 100.0, applyfrom.getStat().getTotalLuk(), 2.3, 3.5);
+        hpchange += makeHealHP(getY() / 100.0, applyfrom.getStats().getTotalLuk(), 2.3, 3.5);
         break;
     }
     return hpchange;
@@ -1444,7 +1444,7 @@ public class MapleStatEffect implements Serializable {
       }
     }
     if (mpR != 0) {
-      mpchange += (int) (applyfrom.getStat().getCurrentMaxMp() * mpR);
+      mpchange += (int) (applyfrom.getStats().getCurrentMaxMp() * mpR);
     }
     if (primary) {
       if (mpCon != 0) {
@@ -1460,7 +1460,7 @@ public class MapleStatEffect implements Serializable {
           }
         }
         final Integer Concentrate = applyfrom.getBuffedSkill_X(MapleBuffStat.CONCENTRATE);
-        final int percent_off = applyfrom.getStat().mpconReduce + (Concentrate == null ? 0 : Concentrate);
+        final int percent_off = applyfrom.getStats().mpconReduce + (Concentrate == null ? 0 : Concentrate);
         if (applyfrom.getBuffedValue(MapleBuffStat.INFINITY) != null) {
           mpchange = 0;
         } else {
@@ -1473,7 +1473,7 @@ public class MapleStatEffect implements Serializable {
 
   private final int alchemistModifyVal(final MapleCharacter chr, final int val, final boolean withX) {
     if (!skill) {
-      int offset = chr.getStat().RecoveryUP;
+      int offset = chr.getStats().RecoveryUP;
       final MapleStatEffect alchemistEffect = getAlchemistEffect(chr);
       if (alchemistEffect != null) {
         offset += (withX ? alchemistEffect.getX() : alchemistEffect.getY());

@@ -15,6 +15,6 @@ import client.commands.gm0.DistributeStats;
 public class Luk extends DistributeStats {
 
     public Luk() {
-       stat = MapleStat.LUK;
+       stats = MapleStat.LUK;
     }
   }

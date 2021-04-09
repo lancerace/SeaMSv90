@@ -76,7 +76,7 @@ public class PlayerHandler {
     if (chr.isGM() && chr.isInvincible()) {
       return;
     }
-    final PlayerStats stats = chr.getStat();
+    final PlayerStats stats = chr.getStats();
     if (type != -2 && type != -3 && type != -4) { // Not map damage
       monsteridfrom = slea.readInt();
       oid = slea.readInt();
@@ -146,8 +146,8 @@ public class PlayerHandler {
         }
       }
       if (type != -2 && type != -3 && type != -4) {
-        final int bouncedam_ = (Randomizer.nextInt(100) < chr.getStat().DAMreflect_rate
-            ? chr.getStat().DAMreflect : 0)
+        final int bouncedam_ = (Randomizer.nextInt(100) < chr.getStats().DAMreflect_rate
+            ? chr.getStats().DAMreflect : 0)
             + (type == -1 && chr.getBuffedValue(MapleBuffStat.POWERGUARD) != null
             ? chr.getBuffedValue(MapleBuffStat.POWERGUARD) : 0)
             + (type == -1 && chr.getBuffedValue(MapleBuffStat.PERFECT_ARMOR) != null
@@ -198,7 +198,7 @@ public class PlayerHandler {
           && chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_ABSORB) != null) {
         double buff = chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_PROC).doubleValue();
         double buffz = chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_ABSORB).doubleValue();
-        if ((int) ((buff / 100.0) * chr.getStat().getMaxHp()) <= damage) {
+        if ((int) ((buff / 100.0) * chr.getStats().getMaxHp()) <= damage) {
           damage -= (int) ((buffz / 100.0) * damage);
           chr.cancelEffectFromBuffStat(MapleBuffStat.SUMMON);
           chr.cancelEffectFromBuffStat(MapleBuffStat.REAPER);
@@ -306,18 +306,18 @@ public class PlayerHandler {
           return;
         }
         if (chr.getPyramidSubway() != null) {
-          chr.getStat().setHp((short) 50);
+          chr.getStats().setHp((short) 50);
           chr.getPyramidSubway().fail(chr);
           return;
         }
         if (!wheel) {
-          chr.getStat().setHp((short) 50);
+          chr.getStats().setHp((short) 50);
           final MapleMap to = chr.getMap().getReturnMap();
           chr.changeMap(to, to.getPortal(0));
         } else {
           c.getSession().write(MTSCSPacket
               .useWheel((byte) (chr.getInventory(MapleInventoryType.CASH).countById(5510000) - 1)));
-          chr.getStat().setHp(((chr.getStat().getMaxHp() / 100) * 40));
+          chr.getStats().setHp(((chr.getStats().getMaxHp() / 100) * 40));
           MapleInventoryManipulator.removeById(c, MapleInventoryType.CASH, 5510000, 1, true, false);
           final MapleMap to = chr.getMap();
           chr.changeMap(to, to.getPortal(0));

@@ -134,7 +134,7 @@ public class MaplePacketCreator {
     mplew.write(0); // revive stuffs?..
     mplew.writeInt(to.getId());
     mplew.write(spawnPoint);
-    mplew.writeShort(chr.getStat().getHp());
+    mplew.writeShort(chr.getStats().getHp());
     mplew.write(0); // if 1, then 2 more int
     mplew.writeLong(PacketHelper.getTime(System.currentTimeMillis()));
 
@@ -996,7 +996,7 @@ public class MaplePacketCreator {
     addRingInfo(mplew, rings.getMid());
     addMRingInfo(mplew, rings.getRight(), chr);
     // mplew.write(0); // 3 ints
-    mplew.write(chr.getStat().Berserk ? 1 : 0);
+    mplew.write(chr.getStats().Berserk ? 1 : 0);
     mplew.write(0); // if this is 1, then 1 int(size), each size = another
     // int.
     mplew.writeInt(0);
@@ -4107,12 +4107,12 @@ public class MaplePacketCreator {
     final List<Pair<MapleStat.Temp, Integer>> stats = new ArrayList<Pair<MapleStat.Temp, Integer>>();
     int offset = 1 + (chr.getLevel() - 90) / 20;
     // every 20 levels above 90, +1
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.STR, chr.getStat().getTotalStr() / offset));
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.DEX, chr.getStat().getTotalDex() / offset));
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.INT, chr.getStat().getTotalInt() / offset));
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.LUK, chr.getStat().getTotalLuk() / offset));
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.WATK, chr.getStat().getTotalWatk() / offset));
-    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.MATK, chr.getStat().getTotalMagic() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.STR, chr.getStats().getTotalStr() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.DEX, chr.getStats().getTotalDex() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.INT, chr.getStats().getTotalInt() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.LUK, chr.getStats().getTotalLuk() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.WATK, chr.getStats().getTotalWatk() / offset));
+    stats.add(new Pair<MapleStat.Temp, Integer>(MapleStat.Temp.MATK, chr.getStats().getTotalMagic() / offset));
     return temporaryStats(stats);
   }
 

@@ -128,7 +128,7 @@ public class UseCashItemHandler extends AbstractMaplePacketHandler {
           break; // Hack
         }
         final int job = c.getPlayer().getJob();
-        final PlayerStats playerst = c.getPlayer().getStat();
+        final PlayerStats playerst = c.getPlayer().getStats();
         used = true;
 
         switch (apto) { // AP to
@@ -1218,7 +1218,7 @@ public class UseCashItemHandler extends AbstractMaplePacketHandler {
           for (final MapleCharacter m : toGive) {
             m.gainMeso(
                 mapitem.getMeso() / toGive.size()
-                    + (m.getStat().hasPartyBonus ? (int) (mapitem.getMeso() / 20.0) : 0),
+                    + (m.getStats().hasPartyBonus ? (int) (mapitem.getMeso() / 20.0) : 0),
                 true, true);
           }
         } else {

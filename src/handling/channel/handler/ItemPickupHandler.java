@@ -87,7 +87,7 @@ public class ItemPickupHandler extends AbstractMaplePacketHandler {
             for (final MapleCharacter m : toGive) {
               m.gainMeso(
                   mapitem.getMeso() / toGive.size()
-                      + (m.getStat().hasPartyBonus ? (int) (mapitem.getMeso() / 20.0) : 0),
+                      + (m.getStats().hasPartyBonus ? (int) (mapitem.getMeso() / 20.0) : 0),
                   true, true);
             }
           } else {

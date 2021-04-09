@@ -21,7 +21,7 @@ public class HealOverTimeHandler extends AbstractMaplePacketHandler {
     int healHP = slea.readShort();
     int healMP = slea.readShort();
 
-    final PlayerStats stats = chr.getStat();
+    final PlayerStats stats = chr.getStats();
 
     if (stats.getHp() <= 0) {
       return;

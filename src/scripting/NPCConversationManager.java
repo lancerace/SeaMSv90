@@ -1116,15 +1116,15 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
 
   public void maxStats() {
     List<Pair<MapleStat, Integer>> statup = new ArrayList<Pair<MapleStat, Integer>>(2);
-    c.getPlayer().getStat().setStr((short) 32767);
-    c.getPlayer().getStat().setDex((short) 32767);
-    c.getPlayer().getStat().setInt((short) 32767);
-    c.getPlayer().getStat().setLuk((short) 32767);
+    c.getPlayer().getStats().setStr((short) 32767);
+    c.getPlayer().getStats().setDex((short) 32767);
+    c.getPlayer().getStats().setInt((short) 32767);
+    c.getPlayer().getStats().setLuk((short) 32767);
 
-    c.getPlayer().getStat().setMaxHp((short) 30000);
-    c.getPlayer().getStat().setMaxMp((short) 30000);
-    c.getPlayer().getStat().setHp((short) 30000);
-    c.getPlayer().getStat().setMp((short) 30000);
+    c.getPlayer().getStats().setMaxHp((short) 30000);
+    c.getPlayer().getStats().setMaxMp((short) 30000);
+    c.getPlayer().getStats().setHp((short) 30000);
+    c.getPlayer().getStats().setMp((short) 30000);
 
     statup.add(new Pair<MapleStat, Integer>(MapleStat.STR, Integer.valueOf(32767)));
     statup.add(new Pair<MapleStat, Integer>(MapleStat.DEX, Integer.valueOf(32767)));
@@ -1625,10 +1625,10 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
     eq.setOwner(getPlayer().getName());
     if (MapleInventoryManipulator.addFromDrop(c, eq, false)) {
       final List<Pair<MapleStat, Integer>> stat = new ArrayList<>(4);
-      getPlayer().getStat().setStr((short) 4);
-      getPlayer().getStat().setDex((short) 4);
-      getPlayer().getStat().setInt((short) 4);
-      getPlayer().getStat().setLuk((short) 4);
+      getPlayer().getStats().setStr((short) 4);
+      getPlayer().getStats().setDex((short) 4);
+      getPlayer().getStats().setInt((short) 4);
+      getPlayer().getStats().setLuk((short) 4);
       stat.add(new Pair<>(MapleStat.STR, 4));
       stat.add(new Pair<>(MapleStat.DEX, 4));
       stat.add(new Pair<>(MapleStat.INT, 4));
@@ -1864,8 +1864,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
     World.Broadcast.broadcastMessage(MaplePacketCreator.showSpecialEffect_(effect));
   }
 
-  public void setstat(byte stats, short newval) {
-    getPlayer().setstat(stats, newval);
+  public void setStats(byte stats, short newval) {
+    getPlayer().setStats(stats, newval);
   }
 
   public void gainNx(int amount) {

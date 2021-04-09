@@ -13,7 +13,7 @@ public abstract class ICommand {
     protected int rank;
     //protected String description;
 
-    public abstract void execute(MapleClient client, String[] params);
+    public abstract void execute(MapleClient c, String[] params);
 
     public int getRank() {
         return rank;

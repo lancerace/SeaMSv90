@@ -339,7 +339,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
       if (attacker.hasDisease(MapleDisease.CURSE)) {
         exp /= 2;
       }
-      exp *= attacker.getEXPMod() * (int) (attacker.getStat().expBuff / 100.0);
+      exp *= attacker.getEXPMod() * (int) (attacker.getStats().expBuff / 100.0);
       if (attacker.getSubCategoryField() == 1 && attacker.getLevel() >= 10 && attacker.getLevel() < 20) {
         exp = exp * 3 * ChannelServer.getInstance(map.getChannel()).getExpRate();
       } else if (attacker.getLevel() >= 10) {
@@ -357,8 +357,8 @@ public class MapleMonster extends AbstractLoadedMapleLife {
       if (Premium_Bonus_EXP_PERCENT > 0) {
         Premium_Bonus_EXP = (int) ((exp / 100.0) * Premium_Bonus_EXP_PERCENT);
       }
-      int Equipment_Bonus_EXP = (int) ((exp / 100.0) * attacker.getStat().equipmentBonusExp);
-      if (attacker.getStat().equippedFairy && attacker.getFairyExp() > 0) {
+      int Equipment_Bonus_EXP = (int) ((exp / 100.0) * attacker.getStats().equipmentBonusExp);
+      if (attacker.getStats().equippedFairy && attacker.getFairyExp() > 0) {
         Equipment_Bonus_EXP += (int) ((exp / 100.0) * attacker.getFairyExp());
       }
 
@@ -859,7 +859,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
         default:
           return; // Hack, using venom without the job required
       }
-      final int luk = from.getStat().getLuk();
+      final int luk = from.getStats().getLuk();
       final int maxDmg = (int) Math.ceil(Math.min(Short.MAX_VALUE, 0.2 * luk * matk));
       final int minDmg = (int) Math.ceil(Math.min(Short.MAX_VALUE, 0.1 * luk * matk));
       int gap = maxDmg - minDmg;
@@ -877,9 +877,9 @@ public class MapleMonster extends AbstractLoadedMapleLife {
     } else if (statusSkill == 4111003 || statusSkill == 14111001) { // shadow web
       status.setPoisonSchedule(timerManager.schedule(new PoisonTask((int) (getMobMaxHp() / 50.0 + 0.999), from, status, cancelTask, true), 3500));
     } else if (statusSkill == 4341003) { // Monster Bomb
-      status.setPoisonSchedule(timerManager.schedule(new PoisonTask((int) (1200 * from.getStat().getCurrentMaxBaseDamage() / 100.0), from, status, cancelTask, false), 3000));
+      status.setPoisonSchedule(timerManager.schedule(new PoisonTask((int) (1200 * from.getStats().getCurrentMaxBaseDamage() / 100.0), from, status, cancelTask, false), 3000));
     } else if (statusSkill == 4121004 || statusSkill == 4221004) { // todo fix this
-      final int damage = (from.getStat().getStr() + from.getStat().getLuk()) * 2 * (60 / 100);
+      final int damage = (from.getStats().getStr() + from.getStats().getLuk()) * 2 * (60 / 100);
       status.setPoisonSchedule(timerManager.register(new PoisonTask(damage, from, status, cancelTask, false), 1000, 1000));
     }
 
@@ -1290,10 +1290,10 @@ public class MapleMonster extends AbstractLoadedMapleLife {
                 if (Class_Bonus_EXP == 0) {
                   Class_Bonus_EXP = ServerConstants.Class_Bonus_EXP(pchr.getJob());
                 }
-                if (pchr.getStat().equippedWelcomeBackRing && Premium_Bonus_EXP == 0) {
+                if (pchr.getStats().equippedWelcomeBackRing && Premium_Bonus_EXP == 0) {
                   Premium_Bonus_EXP = 80;
                 }
-                if (pchr.getStat().hasPartyBonus && added_partyinc < 4) {
+                if (pchr.getStats().hasPartyBonus && added_partyinc < 4) {
                   added_partyinc++;
                 }
               }

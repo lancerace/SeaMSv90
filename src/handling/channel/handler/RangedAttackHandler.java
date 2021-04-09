@@ -103,7 +103,7 @@ public class RangedAttackHandler extends AbstractMaplePacketHandler {
     if (projectile != 0) {
       projectileWatk = MapleItemInformationProvider.getInstance().getWatkForProjectile(projectile);
     }
-    final PlayerStats statst = chr.getStat();
+    final PlayerStats statst = chr.getStats();
     switch (attack.skill) {
       case 4001344: // Lucky Seven
       case 4121007: // Triple Throw
@@ -146,7 +146,7 @@ public class RangedAttackHandler extends AbstractMaplePacketHandler {
     chr.getMap().broadcastMessage(chr,
         MaplePacketCreator.rangedAttack(chr.getId(), attack.tbyte, attack.skill, skillLevel, attack.display,
             attack.animation, attack.speed, visProjectile, attack.allDamage, attack.position,
-            chr.getLevel(), chr.getStat().passive_mastery(), attack.unk),
+            chr.getLevel(), chr.getStats().passive_mastery(), attack.unk),
         chr.getPosition());
     DamageParse.applyAttack(attack, skill, chr, bulletCount, basedamage, effect,
         ShadowPartner != null ? AttackType.RANGED_WITH_SHADOWPARTNER : AttackType.RANGED);

@@ -63,8 +63,8 @@ public class AdminCommand {
 
     @Override
     public int execute(MapleClient c, String[] splitted) {
-      c.getPlayer().getStat().setHp((short) 1);
-      c.getPlayer().getStat().setMp((short) 1);
+      c.getPlayer().getStats().setHp((short) 1);
+      c.getPlayer().getStats().setMp((short) 1);
       c.getPlayer().updateSingleStat(MapleStat.HP, 1);
       c.getPlayer().updateSingleStat(MapleStat.MP, 1);
       return 0;
@@ -75,10 +75,10 @@ public class AdminCommand {
 
     @Override
     public int execute(MapleClient c, String[] splitted) {
-      c.getPlayer().getStat().setHp(c.getPlayer().getStat().getCurrentMaxHp());
-      c.getPlayer().getStat().setMp(c.getPlayer().getStat().getCurrentMaxMp());
-      c.getPlayer().updateSingleStat(MapleStat.HP, c.getPlayer().getStat().getCurrentMaxHp());
-      c.getPlayer().updateSingleStat(MapleStat.MP, c.getPlayer().getStat().getCurrentMaxMp());
+      c.getPlayer().getStats().setHp(c.getPlayer().getStats().getCurrentMaxHp());
+      c.getPlayer().getStats().setMp(c.getPlayer().getStats().getCurrentMaxMp());
+      c.getPlayer().updateSingleStat(MapleStat.HP, c.getPlayer().getStats().getCurrentMaxHp());
+      c.getPlayer().updateSingleStat(MapleStat.MP, c.getPlayer().getStats().getCurrentMaxMp());
       return 0;
     }
   }
@@ -287,8 +287,8 @@ public class AdminCommand {
           c.getPlayer().dropMessage(6, "Player " + splitted[i] + " not found.");
         }
         if (player.allowedToTarget(victim)) {
-          victim.getStat().setHp((short) 0);
-          victim.getStat().setMp((short) 0);
+          victim.getStats().setHp((short) 0);
+          victim.getStats().setMp((short) 0);
           victim.updateSingleStat(MapleStat.HP, 0);
           victim.updateSingleStat(MapleStat.MP, 0);
         }
@@ -347,17 +347,17 @@ public class AdminCommand {
     }
   }
 
-  public static class HealHere extends CommandExecute {
+  public static class HealAll extends CommandExecute {
 
     @Override
     public int execute(MapleClient c, String[] splitted) {
       MapleCharacter player = c.getPlayer();
       for (MapleCharacter mch : player.getMap().getCharacters()) {
         if (mch != null) {
-          c.getPlayer().getStat().setHp(c.getPlayer().getStat().getMaxHp());
-          c.getPlayer().updateSingleStat(MapleStat.HP, c.getPlayer().getStat().getMaxHp());
-          c.getPlayer().getStat().setMp(c.getPlayer().getStat().getMaxMp());
-          c.getPlayer().updateSingleStat(MapleStat.MP, c.getPlayer().getStat().getMaxMp());
+          c.getPlayer().getStats().setHp(c.getPlayer().getStats().getMaxHp());
+          c.getPlayer().updateSingleStat(MapleStat.HP, c.getPlayer().getStats().getMaxHp());
+          c.getPlayer().getStats().setMp(c.getPlayer().getStats().getMaxMp());
+          c.getPlayer().updateSingleStat(MapleStat.MP, c.getPlayer().getStats().getMaxMp());
         }
       }
       return 1;
@@ -1043,8 +1043,8 @@ public class AdminCommand {
     public int execute(MapleClient c, String[] splitted) {
       for (MapleCharacter map : c.getPlayer().getMap().getCharactersThreadsafe()) {
         if (map != null && !map.isGM()) {
-          map.getStat().setHp((short) 0);
-          map.getStat().setMp((short) 0);
+          map.getStats().setHp((short) 0);
+          map.getStats().setMp((short) 0);
           map.updateSingleStat(MapleStat.HP, 0);
           map.updateSingleStat(MapleStat.MP, 0);
         }
@@ -1309,43 +1309,43 @@ public class AdminCommand {
       builder.append(" /").append(other.getPosition().y);
 
       builder.append(" || HP : ");
-      builder.append(other.getStat().getHp());
+      builder.append(other.getStats().getHp());
       builder.append(" /");
-      builder.append(other.getStat().getCurrentMaxHp());
+      builder.append(other.getStats().getCurrentMaxHp());
 
       builder.append(" || MP : ");
-      builder.append(other.getStat().getMp());
+      builder.append(other.getStats().getMp());
       builder.append(" /");
-      builder.append(other.getStat().getCurrentMaxMp());
+      builder.append(other.getStats().getCurrentMaxMp());
 
       builder.append(" || WATK : ");
-      builder.append(other.getStat().getTotalWatk());
+      builder.append(other.getStats().getTotalWatk());
       builder.append(" || MATK : ");
-      builder.append(other.getStat().getTotalMagic());
+      builder.append(other.getStats().getTotalMagic());
       builder.append(" || MAXDAMAGE : ");
-      builder.append(other.getStat().getCurrentMaxBaseDamage());
+      builder.append(other.getStats().getCurrentMaxBaseDamage());
       builder.append(" || DAMAGE% : ");
-      builder.append(other.getStat().dam_r);
+      builder.append(other.getStats().dam_r);
       builder.append(" || BOSSDAMAGE% : ");
-      builder.append(other.getStat().bossdam_r);
+      builder.append(other.getStats().bossdam_r);
 
       builder.append(" || STR : ");
-      builder.append(other.getStat().getStr());
+      builder.append(other.getStats().getStr());
       builder.append(" || DEX : ");
-      builder.append(other.getStat().getDex());
+      builder.append(other.getStats().getDex());
       builder.append(" || INT : ");
-      builder.append(other.getStat().getInt());
+      builder.append(other.getStats().getInt());
       builder.append(" || LUK : ");
-      builder.append(other.getStat().getLuk());
+      builder.append(other.getStats().getLuk());
 
       builder.append(" || Total STR : ");
-      builder.append(other.getStat().getTotalStr());
+      builder.append(other.getStats().getTotalStr());
       builder.append(" || Total DEX : ");
-      builder.append(other.getStat().getTotalDex());
+      builder.append(other.getStats().getTotalDex());
       builder.append(" || Total INT : ");
-      builder.append(other.getStat().getTotalInt());
+      builder.append(other.getStats().getTotalInt());
       builder.append(" || Total LUK : ");
-      builder.append(other.getStat().getTotalLuk());
+      builder.append(other.getStats().getTotalLuk());
 
       builder.append(" || EXP : ");
       builder.append(other.getExp());
@@ -2517,10 +2517,7 @@ public class AdminCommand {
       return 1;
     }
   }
-
-  public static class Y extends Yellow {
-  }
-
+  
   public static class ReloadOps extends CommandExecute {
 
     @Override

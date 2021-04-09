@@ -341,7 +341,7 @@ public class MapleUserPackets {
   }
 
   public static byte[] updatePartyHpForCharacter(final MapleCharacter partyMate) {
-    return MapleUserPackets.updatePartyMemberHP(partyMate.getId(), partyMate.getStat().getHp(), partyMate.getStat().getCurrentMaxHp());
+    return MapleUserPackets.updatePartyMemberHP(partyMate.getId(), partyMate.getStats().getHp(), partyMate.getStats().getCurrentMaxHp());
   }
 
 

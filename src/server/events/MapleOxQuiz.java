@@ -127,7 +127,7 @@ public class MapleOxQuiz extends MapleEvent {
             for (MapleCharacter chr : toSend.getCharactersThreadsafe()) {
               if (chr != null && !chr.isGM() && chr.isAlive()) { // make sure they aren't null... maybe something can happen in 12 seconds.
                 if (!isCorrectAnswer(chr, question.getValue().getAnswer())) {
-                  chr.getStat().setHp((short) 0);
+                  chr.getStats().setHp((short) 0);
                   chr.updateSingleStat(MapleStat.HP, 0);
                 } else {
                   chr.gainExp(3000, true, true, false);

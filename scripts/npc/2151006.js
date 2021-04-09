@@ -7,7 +7,7 @@ function start() {
 }
 
 function action(mode, type, selection) {
-    cm.getPlayer().getStat().heal(cm.getPlayer());
+    cm.getPlayer().getStats().heal(cm.getPlayer());
     cm.sendNext("Please, continue fighting! I have healed you.");
     cm.safeDispose();
 }

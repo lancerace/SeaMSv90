@@ -20,7 +20,7 @@ public class DistributeAPHandler extends AbstractMaplePacketHandler {
     c.getSession().write(MaplePacketCreator.updatePlayerStats(statupdate, true, chr.getJob()));
     chr.updateTick(slea.readInt());
 
-    final PlayerStats stat = chr.getStat();
+    final PlayerStats stat = chr.getStats();
     final int job = chr.getJob();
     if (chr.getRemainingAp() > 0) {
       switch (slea.readInt()) {

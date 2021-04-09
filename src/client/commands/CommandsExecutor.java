@@ -5,26 +5,23 @@
  */
 package client.commands;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
-import client.MapleCharacter;
 import client.MapleClient;
 import client.commands.gm0.Dex;
 import client.commands.gm0.Int;
+import client.commands.gm0.Luk;
 import client.commands.gm0.Str;
+import client.commands.gm2.Heal;
+import client.commands.gm2.HealAll;
+import client.commands.gm2.Invincible;
 import client.commands.gm2.Level;
-import constants.ServerConstants.CommandType;
+import client.commands.gm2.MaxStats;
 import constants.ServerConstants.PlayerRank;
-import database.DatabaseConnection;
 import tools.FilePrinter;
-import tools.FileoutputUtil;
 
 /**
  *
@@ -117,7 +114,7 @@ public class CommandsExecutor {
 
 
     private void registerLv0Commands(){
-        addCommand("luk", PlayerRank.IS_NORMAL.getLevel(), Str.class);
+        addCommand("luk", PlayerRank.IS_NORMAL.getLevel(), Luk.class);
         addCommand("dex", PlayerRank.IS_NORMAL.getLevel(), Dex.class);
         addCommand("str", PlayerRank.IS_NORMAL.getLevel(), Str.class);
         addCommand("int", PlayerRank.IS_NORMAL.getLevel(), Int.class);
@@ -129,6 +126,10 @@ public class CommandsExecutor {
 
     private void registerLv2Commands(){
         addCommand("level", PlayerRank.IS_GM.getLevel(),Level.class);
+        addCommand("godmode", PlayerRank.IS_GM.getLevel(),Invincible.class);
+        addCommand("maxstats", PlayerRank.IS_GM.getLevel(),MaxStats.class);
+        addCommand("heal", PlayerRank.IS_GM.getLevel(),Heal.class);
+        addCommand("healall", PlayerRank.IS_GM.getLevel(),HealAll.class);
     }
 
     private void registerLv3Commands(){

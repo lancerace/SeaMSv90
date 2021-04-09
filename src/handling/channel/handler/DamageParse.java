@@ -104,7 +104,7 @@ public class DamageParse {
     }
     if (attack.hits > 0 && attack.targets > 0) {
       // Don't ever do this. it's too expensive.
-      if (!player.getStat().checkEquipDurabilitys(player, -1)) { //i guess this is how it works ?
+      if (!player.getStats().checkEquipDurabilitys(player, -1)) { //i guess this is how it works ?
         player.dropMessage(5, "An item has run out of durability but has no inventory room to go to.");
         return;
       } //lol
@@ -145,7 +145,7 @@ public class DamageParse {
     }
     int fixeddmg, totDamageToOneMonster = 0;
     long hpMob = 0;
-    final PlayerStats stats = player.getStat();
+    final PlayerStats stats = player.getStats();
 
     int CriticalDamage = stats.passive_sharpeye_percent();
     byte ShdowPartnerAttackPercentage = 0;
@@ -488,7 +488,7 @@ public class DamageParse {
       return;
     }
     if (attack.hits > 0 && attack.targets > 0) {
-      if (!player.getStat().checkEquipDurabilitys(player, -1)) { //i guess this is how it works ?
+      if (!player.getStats().checkEquipDurabilitys(player, -1)) { //i guess this is how it works ?
         player.dropMessage(5, "An item has run out of durability but has no inventory room to go to.");
         return;
       } //lol
@@ -509,7 +509,7 @@ public class DamageParse {
         }
       }
     }
-    final PlayerStats stats = player.getStat();
+    final PlayerStats stats = player.getStats();
 //	double minDamagePerHit;
     double maxDamagePerHit;
     if (attack.skill == 2301002) {
@@ -879,7 +879,7 @@ public class DamageParse {
     if (homing != null && player.getFirstLinkMid() == monster.getObjectId() && homing.getSourceId() == 5220011) { //bullseye
       elementalMaxDamagePerMonster += (elementalMaxDamagePerMonster * homing.getX());
     }
-    final PlayerStats stat = player.getStat();
+    final PlayerStats stat = player.getStats();
     elementalMaxDamagePerMonster += (elementalMaxDamagePerMonster * (double) player.getDamageIncrease(monster.getObjectId())) / 100D;
     elementalMaxDamagePerMonster += (elementalMaxDamagePerMonster * (monster.getStats().isBoss() ? stat.bossdam_r : stat.dam_r)) / 100.0;
 
@@ -909,7 +909,7 @@ public class DamageParse {
   }
 
   public static final AttackInfo Modify_AttackCrit(final AttackInfo attack, final MapleCharacter chr, final int type) {
-    int CriticalRate = chr.getStat().passive_sharpeye_rate();
+    int CriticalRate = chr.getStats().passive_sharpeye_rate();
     final boolean shadow = (type == 2 && chr.getBuffedValue(MapleBuffStat.SHADOWPARTNER) != null) || (type == 1 && chr.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) != null);
     if (JobConstants.isEvanSkill(attack.skill) || attack.skill != 4211006 && attack.skill != 3211003 && attack.skill != 4111004 && (CriticalRate > 0 || attack.skill == 4221001 || attack.skill == 3221007)) { //blizz + shadow meso + m.e no crits
       for (AttackPair p : attack.allDamage) {

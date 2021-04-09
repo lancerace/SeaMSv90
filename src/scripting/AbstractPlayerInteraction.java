@@ -244,21 +244,21 @@ public abstract class AbstractPlayerInteraction {
     if (type.equals("LVL")) {
       return c.getPlayer().getLevel();
     } else if (type.equals("STR")) {
-      return c.getPlayer().getStat().getStr();
+      return c.getPlayer().getStats().getStr();
     } else if (type.equals("DEX")) {
-      return c.getPlayer().getStat().getDex();
+      return c.getPlayer().getStats().getDex();
     } else if (type.equals("INT")) {
-      return c.getPlayer().getStat().getInt();
+      return c.getPlayer().getStats().getInt();
     } else if (type.equals("LUK")) {
-      return c.getPlayer().getStat().getLuk();
+      return c.getPlayer().getStats().getLuk();
     } else if (type.equals("HP")) {
-      return c.getPlayer().getStat().getHp();
+      return c.getPlayer().getStats().getHp();
     } else if (type.equals("MP")) {
-      return c.getPlayer().getStat().getMp();
+      return c.getPlayer().getStats().getMp();
     } else if (type.equals("MAXHP")) {
-      return c.getPlayer().getStat().getMaxHp();
+      return c.getPlayer().getStats().getMaxHp();
     } else if (type.equals("MAXMP")) {
-      return c.getPlayer().getStat().getMaxMp();
+      return c.getPlayer().getStats().getMaxMp();
     } else if (type.equals("RAP")) {
       return c.getPlayer().getRemainingAp();
     } else if (type.equals("RSP")) { // todo remove

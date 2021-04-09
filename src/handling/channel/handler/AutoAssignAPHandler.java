@@ -33,7 +33,7 @@ public class AutoAssignAPHandler extends AbstractMaplePacketHandler {
       return;
     }
 
-    final PlayerStats playerst = chr.getStat();
+    final PlayerStats playerst = chr.getStats();
 
     List<Pair<MapleStat, Integer>> statupdate = new ArrayList<Pair<MapleStat, Integer>>(2);
     c.getSession().write(MaplePacketCreator.updatePlayerStats(statupdate, true, chr.getJob()));
